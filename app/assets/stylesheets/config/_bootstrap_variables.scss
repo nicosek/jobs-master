@@ -1,0 +1,35 @@
+// This is where you override default Bootstrap variables
+// 1. Find all Bootstrap variables that you can override at the end of each component's documentation under the `Sass variables` anchor
+// e.g. here are the ones you can override for the navbar https://getbootstrap.com/docs/5.2/components/navbar/#sass-variables
+// 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
+// 3. You can override them below!
+
+// General style
+$font-family-sans-serif: "Work Sans", "Helvetica", "sans-serif";
+$headings-font-family:   "Nunito", "Helvetica", "sans-serif";
+// $font-family-sans-serif: $body-font;
+// $headings-font-family:   $headers-font;
+// $body-bg:                $light-gray;
+$body-bg:                rgb(242, 233, 233);
+$font-size-base:         1rem;
+
+// Colors
+// $body-color: $gray;
+$body-color: gray;
+// $primary:    $blue;
+$primary:    blue;
+// $success:    $green;
+$success:    green;
+// $info:       $yellow;
+$info:       yellow;
+// $danger:     $red;
+$danger:     red;
+// $warning:    $orange;
+$warning:    orange;
+
+// Buttons & inputs' radius
+$border-radius:    2px;
+$border-radius-lg: 2px;
+$border-radius-sm: 2px;
+
+// Override other variables below!

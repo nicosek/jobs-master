@@ -24,6 +24,15 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
 
+# CSS
+gem "bootstrap", "~> 5.2"
+gem "font-awesome-sass", "~> 6.1"
+gem "simple_form"
+gem "autoprefixer-rails"
+
+# importmap
+gem "importmap-rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
