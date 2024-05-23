@@ -1,0 +1,61 @@
+<h1 class='title'>Création De Combattant</h1>
+
+<div>
+  <%= render 'shared/creation_errors' %>
+</div>
+<br>
+
+<p>
+  Pour ce combattant, Dame Nature vous attribue un total de <b><%= @fighter.maximum_total_points %></b> points à répartir
+  entre les points de vie et d'attaque.
+</p>
+<p>
+ Veillez à ce que la somme des points de vie et des points d'attaque ne dépasse pas ce total.
+</p>
+
+<%= form_with model: @fighter do |form| %>
+  <div>
+    <%= form.label :Nom %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label "Points de Vie (de #{Fighter::LOWEST_HEALTH_POINTS} à #{Fighter::HIGHEST_HEALTH_POINTS})" %><br>
+    <%=
+      form.number_field(
+        :health_points,
+        in: Fighter::LOWEST_HEALTH_POINTS..Fighter::HIGHEST_HEALTH_POINTS,
+        step: 1,
+        value: @fighter.maximum_total_points / 2
+      )
+    %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label "Points d'Attaque (de #{Fighter::LOWEST_ATTACK_POINTS} à #{Fighter::HIGHEST_ATTACK_POINTS})" %><br>
+    <%=
+      form.number_field(
+        :attack_points,
+        in: Fighter::LOWEST_ATTACK_POINTS..Fighter::HIGHEST_ATTACK_POINTS,
+        step: 1,
+        value: @fighter.maximum_total_points / 2
+      )
+    %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.number_field :maximum_total_points, value: @fighter.maximum_total_points, hidden: true %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

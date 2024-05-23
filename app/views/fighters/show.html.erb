@@ -1,0 +1,77 @@
+<h1 class='title'><%= @fighter.name %></h1>
+<br>
+
+<div class='fighter_presentation'>
+  <ul>
+    <li>Points de Vie : <%= @fighter.health_points %></li>
+    <li>Points d'attaque : <%= @fighter.attack_points %></li>
+  </ul>
+</div>
+
+<br><hr><br>
+
+<div class='fighter-history'>
+  <h3>Historique des combats</h3>
+  <br>
+  <h5>Domicile</h5>
+  <ul>
+    <% home_victories_count = 0 %>
+    <% home_defeats_count = 0 %>
+    <% @home_fights.each do |fight| %>
+      <li>
+        <%= link_to fight.fight_time&.strftime("%d-%m-%Y à %H:%M:%S"), fight_path(id: fight.id) %> : 
+        <% if fight.winner == fight.home_fighter %>
+          <b><%= fight.home_fighter.name %></b> bat <b><%= fight.away_fighter.name %></b>
+          <% home_victories_count += 1 %>
+        <% else %>
+          <b><%= fight.home_fighter.name %></b> perd contre <b><%= fight.away_fighter.name %></b>
+          <% home_defeats_count += 1 %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <br>
+  <p>Bilan : <b><%= home_victories_count %></b> victoires et <b><%= home_defeats_count %></b> défaites</p>
+  <% if (home_victories_count + home_defeats_count).positive? %>
+    <p>Taux de victoires : <b><%= 100 * home_victories_count / (home_victories_count + home_defeats_count) %>%</b> </p>
+  <% end %>
+  <hr>
+
+  <h5>Extérieur</h5>
+  <ul>
+    <% away_victories_count = 0 %>
+    <% away_defeats_count = 0 %>
+    <% @away_fights.each do |fight| %>
+      <li>
+        <%= link_to fight.fight_time&.strftime("%d-%m-%Y à %H:%M:%S"), fight_path(id: fight.id) %> : 
+        <% if fight.winner == fight.away_fighter %>
+          <b><%= fight.away_fighter.name %></b> bat <b><%= fight.home_fighter.name %></b>
+          <% away_victories_count += 1 %>
+        <% else %>
+          <b><%= fight.away_fighter.name %></b> perd contre <b><%= fight.home_fighter.name %></b>
+          <% away_defeats_count += 1 %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <br>
+  <p>Bilan : <b><%= away_victories_count %></b> victoires et <b><%= away_defeats_count %></b> défaites </p>
+  <% if (away_victories_count + away_defeats_count).positive? %>
+    <p>Taux de victoires : <b><%= 100 * away_victories_count / (away_victories_count + away_defeats_count) %>%</b> </p>
+  <% end %>
+
+  <br><hr><hr><br>
+
+  <div class='global-stats'>
+    <h5>Bilan Total</h5>
+      <p>
+        <b><%= home_victories_count + away_victories_count %></b> victoires et
+        <b><%= home_defeats_count + away_defeats_count %></b> défaites
+      </p>
+      <% if (home_victories_count + home_defeats_count + away_victories_count + away_defeats_count).positive? %>
+        <p>Taux de victoires : <b><%= 100 * (home_victories_count + away_victories_count) / (home_victories_count + home_defeats_count + away_victories_count + away_defeats_count) %>%</b> </p>
+      <% end %>
+  </div>
+</div>
+
+<hr><br>

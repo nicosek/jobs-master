@@ -1,0 +1,68 @@
+<h1 class='title'>Bienvenue dans l'Arène !</h1>
+
+<div>
+  <%= render 'shared/creation_errors' %>
+</div>
+<br>
+
+<div class='fighters-list'>
+  <h3>Voici les combattants disponibles :</h3>
+  <%= render 'shared/fighters_list' %>
+</div>
+
+<br>
+
+<div class='weapons-list'>
+  <h3>Voici les Armes disponibles :</h3>
+  <ul>
+    <% Weapon.all.each do |weapon| %>
+      <ol> <b><%= weapon.name %></b>, Points d'attaque : <%= weapon.attack_points %> </ol>
+    <% end %>
+  </ul>
+</div>
+
+<br>
+
+<div class='shields-list'>
+  <h3>Voici les Boucliers disponibles :</h3>
+  <ul>
+    <% Shield.all.each do |shield| %>
+      <ol> <b><%= shield.name %></b>, Points de défense : <%= shield.defense_points %> </ol>
+    <% end %>
+  </ul>
+</div>
+
+<br><hr><br>
+
+<h3>Choisissez 2 combattants et leurs accessoires pour le prochain combat</h3>
+<br>
+
+<%= form_with model: @fight do |form| %>
+  <div>
+    <b><p><%= form.label "Domicile :" %></b></p>
+    <b><%= form.label "Combattant" %></b>
+    <%= form.select :home_fighter, options_for_select(Fighter.all.pluck(:name)) %>&nbsp &nbsp
+    <b><%= form.label "Arme" %></b>
+    <%= form.select :home_weapon, options_for_select(['Aucune'] + Weapon.all.pluck(:name)) %>&nbsp &nbsp
+    <b><%= form.label "Bouclier" %></b>
+    <%= form.select :home_shield, options_for_select(['Aucun'] + Shield.all.pluck(:name)) %>
+  </div>
+
+  <br>
+
+ <div>
+    <b><p><%= form.label "Extérieur :" %></b></p>
+    <b><%= form.label "Combattant" %></b>
+    <%= form.select :away_fighter, options_for_select(Fighter.all.pluck(:name)) %>&nbsp &nbsp
+    <b><%= form.label "Arme" %></b>
+    <%= form.select :away_weapon, options_for_select(['Aucune'] + Weapon.all.pluck(:name)) %>&nbsp &nbsp
+    <b><%= form.label "Bouclier" %></b>
+    <%= form.select :away_shield, options_for_select(['Aucun'] + Shield.all.pluck(:name)) %>
+  </div>
+
+  <br><br>
+
+  <div>
+    <%= form.submit "Créez le combat !" %>
+  </div>
+<% end %>

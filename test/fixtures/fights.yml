@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  home_fighter: one
+  away_fighter: one
+  fight_time: 2024-05-23 02:10:50
+
+two:
+  home_fighter: two
+  away_fighter: two
+  fight_time: 2024-05-23 02:10:50

@@ -2,6 +2,21 @@
 
 <div class='presentation'>
   <p>
-    Blablabla
+    Cette application a pour but de gérer une liste de personnages et de les faire combattre.
   </p>
+  <p>
+    Le combat se déroule step-by-step, chaque combattant effectuant une attaque à tour de rôle dont l'intensité
+    dépendra des caractéristiques des combattants et de leurs accessoires (à choisir avant chaque combat),
+    ainsi que du hasard.
+  </p>
+  <p>
+    L'attaque affectera le combattant adverse et lui enlèvera des points de vie, le combat s'arrête lorsque
+    l'un des combattants n'a plus de points de vie et son bourreau est déclaré vainqueur.
+  </p>
+</div>
+
+<div class='menu'>
+  <p>Gérez <%= link_to "ici", fighters_path %> les combattants de l'arène</p>
+  <p>ou</p>
+  <p><%= link_to "Entrez dans l'arène !", new_fight_path %></p>
 </div>

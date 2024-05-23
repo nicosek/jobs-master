@@ -1,0 +1,10 @@
+<% flash.each do |type, errors| %>
+  <div>
+    <h5>Erreurs de création</h5>
+    <ul>
+      <% errors.each do |field, error| %>
+        <li><%= "#{field} : #{error}" %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

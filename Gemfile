@@ -33,6 +33,10 @@ gem "autoprefixer-rails"
 # importmap
 gem "importmap-rails"
 
+# AASM, acts as a state machine
+gem 'aasm'
+gem 'after_commit_everywhere', '~> 1.0' # :after_commit AASM callback is not safe in terms of race conditions and redundant calls
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

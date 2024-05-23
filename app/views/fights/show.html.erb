@@ -1,0 +1,39 @@
+<h1 class='title'>Combat #<%= @fight.id %></h1>
+
+<div class='match-summary'>
+  <p><b>Combattant domicile :</b></p>
+  <p><%= @fight.home_fighter.name %>, Points de Vie : <%= @fight.home_fighter.health_points %>,
+    Points d'Attaque : <%= @fight.home_fighter.attack_points %></p>
+  <p>Accessoires : <%= [@fight.home_weapon&.presentation, @fight.home_shield&.presentation].compact.join(', ') %></p>
+  <p><b>Combattant extérieur :</b></p>
+  <p><%= @fight.away_fighter.name %>, Points de Vie : <%= @fight.away_fighter.health_points %>,
+    Points d'Attaque : <%= @fight.away_fighter.attack_points %></p>
+  <p>Accessoires : <%= [@fight.away_weapon&.presentation, @fight.away_shield&.presentation].compact.join(', ') %></p>
+  <p><b>Statut du combat :</b> <%= @fight.state %></p>
+  <p><b>Vainqueur :</b> <%= @fight.winner&.name %></p>
+</div>
+
+<br>
+
+<% if @fight.state == 'finished' %>
+  <div class='match-details'>
+    <p> Voici les étapes de l'affrontement : </p>
+    <ul>
+      <% @steps.order(:created_at).each do |step| %>
+        <li>
+          <b><%= step.attacker.name %></b> a infligé <b><%= step.damage_points %></b> points de dégats à <b><%= step.defender.name %></b></b>
+        </li>
+      <% end %>
+    </ul>
+
+    <br>
+
+    <% if @fight.winner.present? %>
+      <p><b><%= @fight.winner.name %></b> remporte le combat !</p>
+    <% end %>
+  </div>
+<% else %>
+  <%= form_tag({ action: :start }, :multipart => true) do %>
+      <%= submit_tag("Lancer le Combat") %>
+  <% end %>
+<% end %>

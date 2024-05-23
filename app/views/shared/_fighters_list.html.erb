@@ -1,0 +1,6 @@
+<ul>
+  <% @fighters.each do |fighter| %>
+    <% fighter_link = link_to fighter.name, fighter_path(id: fighter.id) %>
+    <li> <b><%= fighter_link %></b>, Points de Vie : <%= fighter.health_points %>, Points d'attaque : <%= fighter.attack_points %> </li>
+  <% end %>
+</ul>
