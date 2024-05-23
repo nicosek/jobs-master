@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_05_23_094522) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "fight_steps", force: :cascade do |t|
-    t.integer "fight_id", null: false
-    t.integer "attacker_id", null: false
-    t.integer "defender_id", null: false
+    t.bigint "fight_id", null: false
+    t.bigint "attacker_id", null: false
+    t.bigint "defender_id", null: false
     t.integer "damage_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,16 +36,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_094522) do
   end
 
   create_table "fights", force: :cascade do |t|
-    t.integer "home_fighter_id", null: false
-    t.integer "away_fighter_id", null: false
+    t.bigint "home_fighter_id", null: false
+    t.bigint "away_fighter_id", null: false
     t.datetime "fight_time"
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "home_weapon_id"
-    t.integer "home_shield_id"
-    t.integer "away_weapon_id"
-    t.integer "away_shield_id"
+    t.bigint "home_weapon_id"
+    t.bigint "home_shield_id"
+    t.bigint "away_weapon_id"
+    t.bigint "away_shield_id"
     t.index ["away_fighter_id"], name: "index_fights_on_away_fighter_id"
     t.index ["away_shield_id"], name: "index_fights_on_away_shield_id"
     t.index ["away_weapon_id"], name: "index_fights_on_away_weapon_id"
