@@ -27,22 +27,6 @@ class Fight < ApplicationRecord
     end
   end
 
-  # def home_fighter_health_points
-  #   [0, home_fighter.health_points - home_fighter_damage_points].max
-  # end
-
-  # def home_fighter_damage_points
-  #   fight_steps.where(defender: home_fighter).sum(:damage_points)
-  # end
-
-  # def away_fighter_health_points
-  #   [0, away_fighter.health_points - away_fighter_damage_points].max
-  # end
-
-  # def away_fighter_damage_points
-  #   fight_steps.where(defender: away_fighter).sum(:damage_points)
-  # end
-
   def winner
     @winner ||= fight_steps.last&.attacker
   end
